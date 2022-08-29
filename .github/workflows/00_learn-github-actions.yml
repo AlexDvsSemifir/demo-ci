@@ -3,7 +3,7 @@
 # Nom du worklflow :
 name: learn-github-actions
 # Trigger. Ici lors des push
-on: [push]
+on: workflow_dispatch
 # Liste des jobs :
 jobs:
   # Premier job
