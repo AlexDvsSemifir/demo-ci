@@ -10,7 +10,7 @@ jobs:
       fail-fast: true
       matrix:
         fruits: [Banane, Moule, Pêche]
-        personne: [Remi, Kevin, Sasuke, Dark Sasuke]
+        personnes: [Remi, Kevin, Sasuke, Dark Sasuke]
     steps:
       - name: Mange mon gros fruit ${{matrix.personnes}}
         run: echo "${{matrix.personnes}} mange une ${{matrix.fruits}}, et ${{matrix.personnes}} adore ça ! "
