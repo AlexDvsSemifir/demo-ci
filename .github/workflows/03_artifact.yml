@@ -8,9 +8,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Créer le fichier
+        # Commande linux pour créer un fichier
         run: echo "Coucou toi <3" > artifact.txt
       - name: Upload Artifact
+        # Action qui permet de générer un artéfact
         uses: actions/upload-artifact@v3
         with:
+          # Nom que l'on souhaite donner à l'artefact
+          # C'est ce nom qui apparaitra dans github
           name: Artfact
+          # Chemin de l'artéfact (dans le runner)
           path: artifact.txt
+  
+  # Second job pour récupérer l'artéfact produit par le premier
+  download:
+    name: Download
+    # Doit s'exécuter APRÈS le premier job
+    needs: upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: download
+        # Action qui permet de télécharger un artefact dans un runner
+        uses: actions/download-artifact@v3
+        with:
+          # On doit lui passert le nom qu'on a donné à l'artefact (Ligne 19)
+          name: Artfact
+      - name: Lire le fichier 
+        # On affiche le contenu du fichier avec 'cat'
+        run: cat artifact.txt 
